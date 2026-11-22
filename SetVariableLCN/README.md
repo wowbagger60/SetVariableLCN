@@ -70,6 +70,11 @@ Per value:
 4. If it is not fresh, the module queries the value (`MWTn`; for T/R1/R2 with
    `LCN_RequestRead` of the LCN Value instance) and waits for the answer.
 
+5. If the queries stay unanswered, the module sets the LCN variable to 0 once
+   and queries again. After power-up an LCN module does not answer queries for
+   a variable that has never been set since; setting it to 0 makes it
+   answerable.
+
 A lost telegram thus costs at most one extra query, never a double addition.
 The periodic query also finds an LCN variable that is 0 after the LCN module
 restarted.
@@ -105,5 +110,12 @@ This module is free of charge. Donations to support the author are gratefully
 accepted: PayPal to ueli.schweizer@cassanis.fr
 
 ## 9. Changelog
+
+**1.0 Build 4:**
+
+- If an LCN module does not answer the query of a variable, the module sets
+  it to 0 once and queries again. After power-up an LCN module does not answer
+  for variables that were never set, so these were never written before.
+  Existing «no answer» faults clear themselves after the update.
 
 **1.0 Build 3:** First release.

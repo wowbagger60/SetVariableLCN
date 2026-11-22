@@ -71,6 +71,11 @@ Pro Wert:
 4. Ist er nicht frisch, fragt das Modul den Wert ab (`MWTn`; bei T/R1/R2 mit
    `LCN_RequestRead` über die LCN-Value-Instanz) und wartet auf die Antwort.
 
+5. Bleiben die Abfragen unbeantwortet, setzt das Modul die LCN-Variable einmal
+   auf 0 und fragt dann erneut. Ein LCN-Modul antwortet nach dem Einschalten
+   nicht auf Abfragen einer Variable, die seither nie gesetzt wurde; das Nullen
+   macht sie abfragbar.
+
 Ein verlorenes Telegramm führt so höchstens zu einer zusätzlichen Abfrage, nie
 zu einer doppelten Addition. Die periodische Abfrage findet auch eine
 LCN-Variable, die nach einem Neustart des LCN-Moduls auf 0 steht.
@@ -107,5 +112,13 @@ Dieses Modul ist kostenlos. Schenkungen als Unterstützung für den Autor werden
 gerne angenommen: PayPal an ueli.schweizer@cassanis.fr
 
 ## 9. Änderungen
+
+**1.0 Build 4:**
+
+- Antwortet ein LCN-Modul nicht auf die Abfrage einer Variable, setzt das
+  Modul sie einmal auf 0 und fragt erneut. Nach dem Einschalten eines
+  LCN-Moduls antwortet es für nie gesetzte Variablen nicht, bisher wurden
+  diese darum nie geschrieben. Bestehende Störungen «keine Antwort» heilen
+  sich nach dem Update selbst.
 
 **1.0 Build 3:** Erstveröffentlichung.

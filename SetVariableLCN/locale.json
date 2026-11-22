@@ -44,7 +44,8 @@
       "%s: LCN module answers again": "%s: LCN-Modul antwortet wieder",
       "%s: LCN variable has the goal value again": "%s: LCN-Variable hat wieder den Sollwert",
       "%s: LCN module does not answer (%d queries)": "%s: LCN-Modul antwortet nicht (%d Abfragen)",
-      "%s: LCN variable does not take the value (goal %d, actual %d) after %d rounds; no further writes": "%s: LCN-Variable übernimmt den Wert nicht (Soll %d, Ist %d) nach %d Runden; es wird nicht weiter gesendet"
+      "%s: LCN variable does not take the value (goal %d, actual %d) after %d rounds; no further writes": "%s: LCN-Variable übernimmt den Wert nicht (Soll %d, Ist %d) nach %d Runden; es wird nicht weiter gesendet",
+      "%s: no answer, LCN variable is set to 0 to initialise it": "%s: keine Antwort, LCN-Variable wird zur Initialisierung auf 0 gesetzt"
     },
     "fr": {
       "Raw value = source × factor + offset (0 to 30000). Choose factor and offset so that 0 never occurs for valid values: after a restart the LCN variable is 0 and then means «invalid». Target: LCN Value variable with value type counter. LCN itself must never change these variables.": "Valeur brute = source × facteur + décalage (0 à 30000). Choisir facteur et décalage pour que les valeurs valides ne donnent jamais 0 : après un redémarrage, la variable LCN vaut 0 et signifie alors «invalide». Cible : variable d'une instance LCN Value de type compteur. LCN lui-même ne doit jamais modifier ces variables.",
@@ -90,7 +91,8 @@
       "%s: LCN module answers again": "%s : le module LCN répond à nouveau",
       "%s: LCN variable has the goal value again": "%s : la variable LCN a de nouveau la consigne",
       "%s: LCN module does not answer (%d queries)": "%s : le module LCN ne répond pas (%d interrogations)",
-      "%s: LCN variable does not take the value (goal %d, actual %d) after %d rounds; no further writes": "%s : la variable LCN ne reprend pas la valeur (consigne %d, réel %d) après %d tours ; plus d'envoi"
+      "%s: LCN variable does not take the value (goal %d, actual %d) after %d rounds; no further writes": "%s : la variable LCN ne reprend pas la valeur (consigne %d, réel %d) après %d tours ; plus d'envoi",
+      "%s: no answer, LCN variable is set to 0 to initialise it": "%s : pas de réponse, la variable LCN est mise à 0 pour l'initialiser"
     }
   }
 }

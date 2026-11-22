@@ -162,6 +162,7 @@ class SetVariableLCN extends IPSModule
         foreach ($state as &$entryState) {
             $entryState['rounds'] = 0;
             $entryState['queries'] = 0;
+            $entryState['zeroed'] = false;
             $entryState['failed'] = false;
             $entryState['reason'] = '';
         }
@@ -237,6 +238,7 @@ class SetVariableLCN extends IPSModule
         $updated = $this->UpdatedAt($entry['Target']);
         if ($updated > $st['query'] && $st['queries'] > 0) {
             $st['queries'] = 0;
+            $st['zeroed'] = false;
             if ($st['failed'] && $st['reason'] === 'answer') {
                 $st['failed'] = false;
                 $st['reason'] = '';
@@ -260,6 +262,17 @@ class SetVariableLCN extends IPSModule
         }
 
         if ($stale) {
+            if ($st['queries'] >= $maxRounds && !$st['zeroed']) {
+                // After power-up an LCN module does not answer MWTn for a variable that was never set.
+                // Setting it to 0 (= invalid) defines it; the next query then gets an answer.
+                $st['zeroed'] = true;
+                $st['queries'] = 0;
+                $st['sent'] = $now;
+                $this->LogMessage(sprintf($this->Translate('%s: no answer, LCN variable is set to 0 to initialise it'), $name), KL_WARNING);
+                $zero = $this->ZeroCommand($target);
+                $this->Send($target['unit'], $zero[0], $zero[1], $name);
+                return true;
+            }
             if ($st['queries'] >= $maxRounds) {
                 if (!$st['failed']) {
                     $st['failed'] = true;
@@ -505,7 +518,7 @@ class SetVariableLCN extends IPSModule
 
     private static function NewState(): array
     {
-        return ['goal' => null, 'sent' => 0.0, 'query' => 0.0, 'rounds' => 0, 'queries' => 0, 'failed' => false, 'reason' => ''];
+        return ['goal' => null, 'sent' => 0.0, 'query' => 0.0, 'rounds' => 0, 'queries' => 0, 'zeroed' => false, 'failed' => false, 'reason' => ''];
     }
 
     private function LoadState(): array
