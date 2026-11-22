@@ -1,0 +1,206 @@
+{
+  "elements": [
+    {
+      "type": "Label",
+      "caption": "SetVariableLCN 1.0 · Build 3"
+    },
+    {
+      "type": "Label",
+      "name": "ValidationMessage",
+      "caption": "",
+      "visible": false
+    },
+    {
+      "type": "Label",
+      "caption": "Raw value = source × factor + offset (0 to 30000). Choose factor and offset so that 0 never occurs for valid values: after a restart the LCN variable is 0 and then means «invalid». Target: LCN Value variable with value type counter. LCN itself must never change these variables."
+    },
+    {
+      "type": "List",
+      "name": "Entries",
+      "caption": "Values",
+      "rowCount": 8,
+      "add": true,
+      "delete": true,
+      "columns": [
+        {
+          "caption": "Name",
+          "name": "Name",
+          "width": "160px",
+          "add": "",
+          "edit": {
+            "type": "ValidationTextBox"
+          }
+        },
+        {
+          "caption": "Source",
+          "name": "Source",
+          "width": "auto",
+          "add": 1,
+          "edit": {
+            "type": "SelectVariable",
+            "validVariableTypes": [0, 1, 2]
+          }
+        },
+        {
+          "caption": "LCN variable",
+          "name": "Target",
+          "width": "auto",
+          "add": 1,
+          "edit": {
+            "type": "SelectVariable",
+            "validVariableTypes": [1, 2]
+          }
+        },
+        {
+          "caption": "Factor",
+          "name": "Factor",
+          "width": "90px",
+          "add": 10,
+          "edit": {
+            "type": "NumberSpinner",
+            "digits": 3
+          }
+        },
+        {
+          "caption": "Offset",
+          "name": "Offset",
+          "width": "90px",
+          "add": 1000,
+          "edit": {
+            "type": "NumberSpinner",
+            "digits": 1
+          }
+        },
+        {
+          "caption": "Deadband",
+          "name": "Deadband",
+          "width": "90px",
+          "add": 0,
+          "edit": {
+            "type": "NumberSpinner",
+            "minimum": 0
+          }
+        },
+        {
+          "caption": "Source max. age",
+          "name": "SourceMaxAge",
+          "width": "120px",
+          "add": 0,
+          "edit": {
+            "type": "NumberSpinner",
+            "minimum": 0,
+            "suffix": " s"
+          }
+        },
+        {
+          "caption": "Firmware",
+          "name": "Firmware",
+          "width": "150px",
+          "add": 0,
+          "edit": {
+            "type": "Select",
+            "options": [
+              {
+                "caption": "from Feb. 2013",
+                "value": 0
+              },
+              {
+                "caption": "up to Nov. 2010 (T only)",
+                "value": 1
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "type": "Label",
+      "caption": "Deadband in raw units: differences up to this value are not corrected. Source max. age: older source values are written as 0 (invalid); 0 = off."
+    },
+    {
+      "type": "NumberSpinner",
+      "name": "GracePeriod",
+      "caption": "Grace period after writing",
+      "suffix": " s",
+      "minimum": 1
+    },
+    {
+      "type": "NumberSpinner",
+      "name": "MaxRounds",
+      "caption": "Rounds without effect until fault",
+      "minimum": 1
+    },
+    {
+      "type": "NumberSpinner",
+      "name": "MaxAge",
+      "caption": "Query LCN value when older than",
+      "suffix": " s",
+      "minimum": 0
+    }
+  ],
+  "actions": [
+    {
+      "type": "List",
+      "name": "StatusList",
+      "caption": "Status",
+      "rowCount": 8,
+      "add": false,
+      "delete": false,
+      "columns": [
+        {
+          "caption": "Name",
+          "name": "Name",
+          "width": "160px"
+        },
+        {
+          "caption": "Goal",
+          "name": "Goal",
+          "width": "80px"
+        },
+        {
+          "caption": "Actual",
+          "name": "Actual",
+          "width": "80px"
+        },
+        {
+          "caption": "Updated",
+          "name": "Updated",
+          "width": "170px"
+        },
+        {
+          "caption": "State",
+          "name": "State",
+          "width": "auto"
+        }
+      ],
+      "values": []
+    },
+    {
+      "type": "RowLayout",
+      "items": [
+        {
+          "type": "Button",
+          "caption": "Refresh status",
+          "onClick": "SVLCN_RefreshStatus($id);"
+        },
+        {
+          "type": "Button",
+          "caption": "Reset faults",
+          "onClick": "SVLCN_ResetFaults($id); SVLCN_RefreshStatus($id);"
+        }
+      ]
+    }
+  ],
+  "status": [
+    {
+      "code": 102,
+      "icon": "active",
+      "caption": "Active"
+    },
+    {
+      "code": 200,
+      "icon": "error",
+      "caption": "Configuration error, see message above"
+    }
+  ]
+}

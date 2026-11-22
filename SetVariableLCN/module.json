@@ -1,0 +1,15 @@
+{
+  "id": "{8D55F1C2-665E-47CD-B4B8-DBD2D46F8990}",
+  "name": "SetVariableLCN",
+  "type": 3,
+  "vendor": "Cassanis Automation",
+  "url": "https://github.com/wowbagger60/SetVariableLCN/blob/main/SetVariableLCN/README.md",
+  "aliases": [
+    "Set Variable LCN",
+    "LCN-Variablen schreiben"
+  ],
+  "parentRequirements": [],
+  "childRequirements": [],
+  "implemented": [],
+  "prefix": "SVLCN"
+}

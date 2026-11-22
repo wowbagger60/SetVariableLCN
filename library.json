@@ -1,0 +1,12 @@
+{
+  "id": "{E94C4769-A087-47AF-94E4-36A8C9E97EB8}",
+  "author": "Ueli Schweizer",
+  "name": "SetVariableLCN",
+  "url": "https://github.com/wowbagger60/SetVariableLCN",
+  "compatibility": {
+    "version": "8.0"
+  },
+  "version": "1.0",
+  "build": 3,
+  "date": 1795362901
+}
